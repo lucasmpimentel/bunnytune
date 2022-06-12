@@ -10,15 +10,15 @@ mySQL and connecting to an external API
 
 **Features to implement**
 
-[] Splash Screen;
-[] Registry whith mySQL database working;
-[] Login with JWT Token validation
-[] New API integration (Napster API)
-[] Discovery Page
-[] Search Page
-[] User Profile
-[] Playlist Maker
-[] Favorite Songs
-[] Share Songs
+- [ ] Splash Screen;
+- [ ] Registry whith mySQL database working;
+- [ ] Login with JWT Token validation
+- [ ] New API integration (Napster API)
+- [ ] Discovery Page
+- [ ] Search Page
+- [ ] User Profile
+- [ ] Playlist Maker
+- [ ] Favorite Songs
+- [ ] Share Songs
 
 README under construction...
