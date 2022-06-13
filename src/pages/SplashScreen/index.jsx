@@ -1,9 +1,13 @@
 import React from 'react';
+import bunnyWhite from '../../assets/images/bunnytuneLogoWhite.svg';
 
 export default function index() {
   return (
     <div>
-      <img />
+      <img
+        src={ bunnyWhite }
+        alt="bunnytuneLogoWhite"
+      />
       <button
         type="button"
         name="loginBtn"
