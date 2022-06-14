@@ -1,4 +1,5 @@
 import React from 'react';
+import { TbArrowBackUp } from 'react-icons/tb';
 import bunnyPink from '../../assets/images/bunnytuneLogoPink.svg';
 /* import { useHistory } from 'react-router-dom';
  */
@@ -31,7 +32,7 @@ export default function Login() {
         name="btnSplashScreen"
         type="button"
       >
-        Voltar
+        <TbArrowBackUp />
       </button>
       <img
         alt="bunnytuneLogoPink"
