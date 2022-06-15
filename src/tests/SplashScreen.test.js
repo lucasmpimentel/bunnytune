@@ -34,7 +34,10 @@ describe('Teste as funções da página: SplashScreen', () => {
     userEvent.click(getSingUpBtn());
     expect(getSingUpTitle()).toBeInTheDocument();
     const backBtn = screen.getByRole('button', { name: ""})
-    userEvent.click(backBtn);
+    /* userEvent.click(backBtn); */
+    const { location } = global.window;
+    location.replace('/')
+    console.log(location);
   })
 
   test('O botão login redireciona corretamente para tela de Login', async () => {

@@ -5,6 +5,7 @@ import Context from '../../context/context';
 import * as C from './styles';
 import BackButton from '../../components/shared/BackButton';
 import BlackButtonFW from '../../components/shared/BlackButtonFW';
+import Inputs from '../../components/shared/Inputs';
 import './singUp.css';
 
 export default function SingUp() {
@@ -34,7 +35,7 @@ export default function SingUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userName && userEmail && userPassword) {
+    if (userName && userEmail && userPassword > MIN_PASSWORD) {
       setSingupData({
         name: userName,
         email: userEmail,
@@ -57,28 +58,28 @@ export default function SingUp() {
         </BackButton>
         <C.Title>Cadastro</C.Title>
         <C.Form onSubmit={ handleSubmit }>
-          <C.Input
+          <Inputs
             type="text"
             name="name"
             value={ userName }
             onChange={ ({ target }) => setUserName(target.value) }
             placeholder="Nome"
           />
-          <C.Input
+          <Inputs
             type="email"
             name="email"
             value={ userEmail }
             onChange={ handleEmail }
             placeholder="Email"
           />
-          <C.Input
+          <Inputs
             type="password"
             min={ MIN_PASSWORD }
             value={ userPassword }
             onChange={ ({ target }) => setUserPassword(target.value) }
             placeholder="Senha"
           />
-          <C.Input
+          <Inputs
             type="password"
             min={ MIN_PASSWORD }
             value={ confirmPassword }
@@ -87,7 +88,7 @@ export default function SingUp() {
           />
           <C.Pass
             className={
-              passwordMatch || passwordMatch.length === 0 ? 'hidden' : 'show'
+              passwordMatch || confirmPassword.length === 0 ? 'hidden' : 'show'
             }
           >
             Senhas não coincidem

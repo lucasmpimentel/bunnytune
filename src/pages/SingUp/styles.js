@@ -5,9 +5,12 @@ export const Main = styled.main`
   background-image: url(${bg});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  /* background-size: cover; */
+  height: 100%;
   min-height: 100vh;
   min-width: 100vw;
+  object-fit: cover;
+  width: 100%;
 `;
 
 export const Glass = styled.div`
@@ -34,17 +37,6 @@ export const Form = styled.form`
   justify-content: space-between;
   min-height: 50vh;
   max-height: 80vh;
-`;
-
-export const Input = styled.input`
-  border: solid black 2px;
-  border-radius: 2px;
-  font-family: Roboto, monospace;
-  font-size: 18px;
-  margin-top: 15px;
-  min-height: 50px;
-  min-width: 100%;
-  padding: 15px 20px;
 `;
 
 export const Pass = styled.p`
