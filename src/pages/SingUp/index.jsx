@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TbArrowBackUp } from 'react-icons/tb';
 import Context from '../../context/context';
+import * as C from './styles';
+import BackButton from '../../components/shared/BackButton';
+import BlackButtonFW from '../../components/shared/BlackButtonFW';
+import './singUp.css';
 
 export default function SingUp() {
   const navigate = useNavigate();
@@ -20,8 +24,6 @@ export default function SingUp() {
   };
 
   const handleConfirmPassword = ({ target: { value } }) => {
-    console.log(typeof value);
-    console.log(typeof userPassword);
     if (value === userPassword) {
       setPasswordMatch(true);
     } else {
@@ -44,49 +46,57 @@ export default function SingUp() {
   };
 
   return (
-    <main>
-      <button
-        type="button"
-        name="btnSplashScreen"
-        onClick={ () => navigate('/') }
-      >
-        <TbArrowBackUp />
-      </button>
-      <h1>Cadastro</h1>
-      <form onSubmit={ handleSubmit }>
-        <input
-          type="text"
-          name="name"
-          value={ userName }
-          onChange={ ({ target }) => setUserName(target.value) }
-          placeholder="Nome"
-        />
-        <input
-          type="email"
-          name="email"
-          value={ userEmail }
-          onChange={ handleEmail }
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          min={ MIN_PASSWORD }
-          value={ userPassword }
-          onChange={ ({ target }) => setUserPassword(target.value) }
-          placeholder="Senha"
-        />
-        <input
-          type="password"
-          min={ MIN_PASSWORD }
-          value={ confirmPassword }
-          onChange={ handleConfirmPassword }
-          placeholder="Confirme sua senha"
-        />
-        { passwordMatch ? '' : <p>Senhas não coincidem</p>}
-        <button type="submit">
-          Cadastrar
-        </button>
-      </form>
-    </main>
+    <C.Main>
+      <C.Glass>
+        <BackButton
+          type="button"
+          name="btnSplashScreen"
+          onClick={ () => navigate('/') }
+        >
+          <TbArrowBackUp />
+        </BackButton>
+        <C.Title>Cadastro</C.Title>
+        <C.Form onSubmit={ handleSubmit }>
+          <C.Input
+            type="text"
+            name="name"
+            value={ userName }
+            onChange={ ({ target }) => setUserName(target.value) }
+            placeholder="Nome"
+          />
+          <C.Input
+            type="email"
+            name="email"
+            value={ userEmail }
+            onChange={ handleEmail }
+            placeholder="Email"
+          />
+          <C.Input
+            type="password"
+            min={ MIN_PASSWORD }
+            value={ userPassword }
+            onChange={ ({ target }) => setUserPassword(target.value) }
+            placeholder="Senha"
+          />
+          <C.Input
+            type="password"
+            min={ MIN_PASSWORD }
+            value={ confirmPassword }
+            onChange={ handleConfirmPassword }
+            placeholder="Confirme sua senha"
+          />
+          <C.Pass
+            className={
+              passwordMatch || passwordMatch.length === 0 ? 'hidden' : 'show'
+            }
+          >
+            Senhas não coincidem
+          </C.Pass>
+          <BlackButtonFW type="submit">
+            Cadastrar
+          </BlackButtonFW>
+        </C.Form>
+      </C.Glass>
+    </C.Main>
   );
 }
