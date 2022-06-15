@@ -11,10 +11,11 @@ mySQL and connecting to an external API
 **Features to implement**
 
 - [ ] Unit Tests
-- [v] Splash Screen;
+- [x] Splash Screen;
 - [ ] Registry whith mySQL database working;
 - [ ] Login with JWT Token validation
-- [ ] New API integration (Napster API)
+- [ ] Login with Spotify Integration
+- [ ] New API integration (Spotify API)
 - [ ] Discovery Page
 - [ ] Search Page
 - [ ] User Profile
@@ -22,4 +23,4 @@ mySQL and connecting to an external API
 - [ ] Favorite Songs
 - [ ] Share Songs
 
-README under construction...
+> README under construction...
