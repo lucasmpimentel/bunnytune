@@ -11,7 +11,7 @@ mySQL and connecting to an external API
 **Features to implement**
 
 - [ ] Unit Tests
-- [ ] Splash Screen;
+- [v] Splash Screen;
 - [ ] Registry whith mySQL database working;
 - [ ] Login with JWT Token validation
 - [ ] New API integration (Napster API)
