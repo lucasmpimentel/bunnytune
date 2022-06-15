@@ -1,10 +1,12 @@
 import React from 'react';
 import { TbArrowBackUp } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 import bunnyPink from '../../assets/images/bunnytuneLogoPink.svg';
-/* import { useHistory } from 'react-router-dom';
- */
+
 export default function Login() {
-/*  const history = useHistory();
+  const navigate = useNavigate();
+
+  /*  const history = useHistory();
   const [userState, setUserState] = useState({
     email: '',
   });
@@ -31,6 +33,7 @@ export default function Login() {
       <button
         name="btnSplashScreen"
         type="button"
+        onClick={ () => navigate('/') }
       >
         <TbArrowBackUp />
       </button>
