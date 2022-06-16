@@ -1,15 +1,27 @@
 import React from 'react';
-import { screen, waitFor, render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import '@testing-library/jest-dom'
 import { BrowserRouter } from 'react-router-dom';
 
-const getLoginBtn = () => screen.getByRole('button', { name: /login/i });
-const getSingUpBtn = () => screen.getByRole('button', { name: /cadastre-se/i });
-const getLoginTitle = () => screen.getByRole('heading', { level: 1, name: /login/i});
-const getSingUpTitle = () => screen.getByRole('heading', { level: 1, name: /cadastro/i});
+const getLoginBtn = () => screen.getByRole(
+  'button',
+  { name: /login/i},
+);
+const getSingUpBtn = () => screen.getByRole(
+  'button',
+  { name: /cadastre-se/i },
+);
+const getLoginTitle = () => screen.getByRole(
+  'heading',
+  { level: 1, name: /login/i}
+);
+const getSingUpTitle = () => screen.getByRole(
+  'heading',
+  { level: 1, name: /cadastro/i}
+);
 
 describe('Teste os elementos da tela: SplashScreen', () => {
   beforeEach(() => renderWithRouter(<App />));
