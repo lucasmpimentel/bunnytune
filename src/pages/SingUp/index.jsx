@@ -13,33 +13,59 @@ export default function SingUp() {
   const { setSingupData } = useContext(Context);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordState, setPasswordState] = useState({
+    userPassword: '',
+    confirmationPassword: '',
+  });
   const [passwordMatch, setPasswordMatch] = useState(false);
+  const [validName, setValidName] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
+  const MIN_NAME = 3;
   const MIN_PASSWORD = 6;
   const EMAIL_REGEX = /^[\w.-]+@[\w.-]+\.[\w]+(\.[\w]+)?$/i;
 
-  const handleEmail = ({ target: { value } }) => {
-    const validateEmail = EMAIL_REGEX.test(value);
-    if (validateEmail) return setUserEmail(value);
+  const handleUserName = ({ target: { value } }) => {
+    setUserName(value);
+    if (value.length >= MIN_NAME) {
+      setValidName(true);
+    } else {
+      setValidName(false);
+    }
   };
 
-  const handleConfirmPassword = ({ target: { value } }) => {
-    if (value === userPassword) {
+  const handleEmail = ({ target: { value } }) => {
+    setUserEmail(value);
+    if (EMAIL_REGEX.test(value)) {
+      setValidEmail(true);
+    } else {
+      setValidEmail(false);
+    }
+  };
+
+  const checkPassword = (password, confirmation) => {
+    if (password === confirmation && password.length >= MIN_PASSWORD) {
       setPasswordMatch(true);
     } else {
       setPasswordMatch(false);
     }
-    if (setPasswordMatch) setConfirmPassword(value);
+  };
+
+  const handlePassword = ({ target: { name, value } }) => {
+    setPasswordState({ ...passwordState, [name]: value });
+    if (name === 'userPassword') {
+      checkPassword(value, passwordState.confirmationPassword);
+    } else {
+      checkPassword(value, passwordState.userPassword);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userName && userEmail && userPassword > MIN_PASSWORD) {
+    if (validName && validEmail && passwordMatch) {
       setSingupData({
         name: userName,
         email: userEmail,
-        password: userPassword,
+        password: passwordState.userPassword,
       });
     } else {
       global.alert('Dados Incorretos');
@@ -61,34 +87,42 @@ export default function SingUp() {
           <Inputs
             type="text"
             name="name"
+            aria-label="username"
             value={ userName }
-            onChange={ ({ target }) => setUserName(target.value) }
+            onChange={ handleUserName }
             placeholder="Nome"
           />
           <Inputs
             type="email"
             name="email"
+            aria-label="email"
             value={ userEmail }
             onChange={ handleEmail }
             placeholder="Email"
           />
           <Inputs
             type="password"
+            aria-label="password"
             min={ MIN_PASSWORD }
-            value={ userPassword }
-            onChange={ ({ target }) => setUserPassword(target.value) }
+            name="userPassword"
+            value={ passwordState.userPassword }
+            onChange={ handlePassword }
             placeholder="Senha"
           />
           <Inputs
             type="password"
             min={ MIN_PASSWORD }
-            value={ confirmPassword }
-            onChange={ handleConfirmPassword }
+            aria-label="confirmPassword"
+            name="confirmationPassword"
+            value={ passwordState.confirmationPassword }
+            onChange={ handlePassword }
             placeholder="Confirme sua senha"
           />
           <C.Pass
             className={
-              passwordMatch || confirmPassword.length === 0 ? 'hidden' : 'show'
+              passwordMatch || passwordState.confirmationPassword.length === 0 ? (
+                'hidden'
+              ) : 'show'
             }
           >
             Senhas não coincidem
