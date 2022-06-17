@@ -1,25 +1,41 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import bunnyWhite from '../../assets/images/bunnytuneLogoWhite.svg';
+import * as C from './styles';
+import BlackButton from '../../components/shared/BlackButton';
+import WhiteButton from '../../components/shared/WhiteButton';
 
-export default function index() {
+export default function SplashScreen() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
+  const handleSingUp = () => {
+    navigate('/cadastro');
+  };
+
   return (
-    <div>
-      <img
+    <C.Main>
+      <C.Logo
         src={ bunnyWhite }
         alt="bunnytuneLogoWhite"
       />
-      <button
-        type="button"
-        name="loginBtn"
-      >
-        LOGIN
-      </button>
-      <button
-        type="button"
-        name="signBtn"
-      >
-        CADASTRE-SE
-      </button>
-    </div>
+      <C.BtnDivisor>
+        <WhiteButton
+          type="button"
+          onClick={ handleLogin }
+        >
+          LOGIN
+        </WhiteButton>
+        <BlackButton
+          type="button"
+          onCLick={ handleSingUp }
+        >
+          CADASTRE-SE
+        </BlackButton>
+      </C.BtnDivisor>
+    </C.Main>
   );
 }
