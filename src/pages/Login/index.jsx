@@ -1,10 +1,16 @@
 import React from 'react';
 import { TbArrowBackUp } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 import bunnyPink from '../../assets/images/bunnytuneLogoPink.svg';
-/* import { useHistory } from 'react-router-dom';
- */
+import * as C from './styles';
+import BackButton from '../../components/shared/BackButton';
+import Inputs from '../../components/shared/Inputs';
+import BlackButtonFW from '../../components/shared/BlackButtonFW';
+
 export default function Login() {
-/*  const history = useHistory();
+  const navigate = useNavigate();
+
+  /*  const history = useHistory();
   const [userState, setUserState] = useState({
     email: '',
   });
@@ -27,37 +33,38 @@ export default function Login() {
   }; */
 
   return (
-    <div>
-      <button
+    <C.Main>
+      <BackButton
         name="btnSplashScreen"
         type="button"
+        onClick={ () => navigate('/') }
       >
         <TbArrowBackUp />
-      </button>
+      </BackButton>
       <img
         alt="bunnytuneLogoPink"
         name="bunnytuneLogoPink"
         src={ bunnyPink }
       />
-      <form>
-        <h1>Login</h1>
-        <input
+      <C.Form>
+        <C.Title>Login</C.Title>
+        <Inputs
           name="inputMail"
           placeholder="Email"
           type="text"
         />
-        <input
+        <Inputs
           name="inputPassword"
           placeholder="Password"
           type="password"
         />
-        <button
+        <BlackButtonFW
           name="btnLogin"
           type="button"
         >
           LOGIN
-        </button>
-      </form>
-    </div>
+        </BlackButtonFW>
+      </C.Form>
+    </C.Main>
   );
 }

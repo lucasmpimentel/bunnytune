@@ -9,18 +9,18 @@ export default function SplashScreen() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/login');
+    navigate('login');
   };
 
   const handleSingUp = () => {
-    navigate('/cadastro');
+    navigate('cadastro');
   };
 
   return (
     <C.Main>
       <C.Logo
         src={ bunnyWhite }
-        alt="bunnytuneLogoWhite"
+        alt="bunnytune logo"
       />
       <C.BtnDivisor>
         <WhiteButton
@@ -31,7 +31,7 @@ export default function SplashScreen() {
         </WhiteButton>
         <BlackButton
           type="button"
-          onCLick={ handleSingUp }
+          onClick={ handleSingUp }
         >
           CADASTRE-SE
         </BlackButton>
