@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-const WhiteButton = styled.button`
-  align-items: center;
+const WhiteButton = styled.button`align-items: center;
   background-color: white;
   border: solid black 2px;
   border-radius: 5px;
   color: black;
   display: flex;
-  font-family: Roboto;
+  font-family: Roboto , Arial , Helvetica , sans-serif;
   font-size: 13px;
   font-weight: 900;
   height: 55px;

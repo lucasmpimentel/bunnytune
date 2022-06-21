@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-const BlackButton = styled.button`
-  align-items: center;
+const BlackButton = styled.button`align-items: center;
   background-color: black;
   border: none;
   border-radius: 5px;
   color: white;
   display: flex;
-  font-family: Roboto;
+  font-family: Roboto , Arial , Helvetica , sans-serif;
   font-size: 13px;
   font-weight: 900;
   height: 55px;
