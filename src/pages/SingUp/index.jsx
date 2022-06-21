@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TbArrowBackUp } from 'react-icons/tb';
-import Context from '../../context/context';
+import bcrypt from 'bcryptjs';
 import * as C from './styles';
 import BackButton from '../../components/shared/BackButton';
 import BlackButtonFW from '../../components/shared/BlackButtonFW';
 import Inputs from '../../components/shared/Inputs';
+import { singUpConnection } from '../../service/backEndConnection';
 import './singUp.css';
 
 export default function SingUp() {
   const navigate = useNavigate();
-  const { setSingupData } = useContext(Context);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [passwordState, setPasswordState] = useState({
@@ -23,6 +23,8 @@ export default function SingUp() {
   const MIN_NAME = 3;
   const MIN_PASSWORD = 6;
   const EMAIL_REGEX = /^[\w.-]+@[\w.-]+\.[\w]+(\.[\w]+)?$/i;
+  const SALT_ROUNDS = 10;
+  const salt = bcrypt.genSaltSync(SALT_ROUNDS);
 
   const handleUserName = ({ target: { value } }) => {
     setUserName(value);
@@ -41,7 +43,6 @@ export default function SingUp() {
       setValidEmail(false);
     }
   };
-
   const checkPassword = (password, confirmation) => {
     if (password === confirmation && password.length >= MIN_PASSWORD) {
       setPasswordMatch(true);
@@ -59,14 +60,22 @@ export default function SingUp() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validName && validEmail && passwordMatch) {
-      setSingupData({
+      const hashPass = bcrypt.hashSync(passwordState.userPassword, salt);
+      const singup = ({
+        isActive: true,
         name: userName,
         email: userEmail,
-        password: passwordState.userPassword,
+        userPassword: hashPass,
       });
+      const resp = await singUpConnection(singup);
+      if (resp === 'Sucess') {
+        navigate('/login');
+      } else {
+        global.alert(resp.message);
+      }
     } else {
       global.alert('Dados Incorretos');
     }
