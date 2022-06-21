@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import Context from './context';
 
 const Provider = ({ children }) => {
-  const [singupData, setSingupData] = useState({});
+  const [user, setUser] = useState(null);
+  const [loading, setLoadig] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
   const context = {
-    singupData,
-    setSingupData,
+    user,
+    setUser,
+    isAuthorized,
+    setIsAuthorized,
+    loading,
+    setLoadig,
   };
 
   return (
